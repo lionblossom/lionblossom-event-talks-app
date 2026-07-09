@@ -36,6 +36,32 @@
     box-sizing: border-box;
 }
 
+/* Light Mode overrides */
+body.light-mode {
+    --bg-primary: #f3f4f6;
+    --bg-secondary: #ffffff;
+    --panel-bg: rgba(255, 255, 255, 0.7);
+    --panel-border: rgba(0, 0, 0, 0.08);
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    
+    --primary-glow: rgba(59, 130, 246, 0.15);
+    --accent-glow: rgba(139, 92, 246, 0.15);
+}
+
+body.light-mode .glow-bg {
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
+}
+
+body.light-mode .logo-text h1 {
+    background: linear-gradient(to right, #111827, #374151);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -44,7 +70,22 @@ body {
     overflow-x: hidden;
     position: relative;
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.glass-panel, .note-card, .btn, .search-box input, .filter-chip, .selected-item-pill, .composer-container, .checkmark {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 
 /* Glow Background Effects */
 .glow-bg {

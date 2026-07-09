@@ -453,4 +453,34 @@ tweetWebBtn.addEventListener('click', () => {
 // App Initialization
 document.addEventListener('DOMContentLoaded', () => {
     fetchReleaseNotes();
+    
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    if (themeToggleBtn) {
+        const moonIcon = themeToggleBtn.querySelector('.moon-icon');
+        const sunIcon = themeToggleBtn.querySelector('.sun-icon');
+        
+        // Load preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            moonIcon.classList.add('hidden');
+            sunIcon.classList.remove('hidden');
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            
+            if (isLight) {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+                showToast('Switched to Light Mode');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                showToast('Switched to Dark Mode');
+            }
+        });
+    }
 });
